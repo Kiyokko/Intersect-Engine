@@ -12,7 +12,6 @@ using Intersect.Client.General;
 using Intersect.Client.Interface.Game;
 using Intersect.Client.Interface.Menu;
 using Intersect.Client.Localization;
-using Intersect.Logging;
 using Intersect.Utilities;
 using static Intersect.Client.Framework.File_Management.GameContentManager;
 
@@ -56,6 +55,8 @@ namespace Intersect.Client.Interface.Shared
         private readonly ScrollControl mInterfaceSettings;
 
         private readonly LabeledCheckBox mAutoCloseWindowsCheckbox;
+
+        private readonly LabeledCheckBox mAutoToggleChatLogCheckbox;
 
         private readonly LabeledCheckBox mShowExperienceAsPercentageCheckbox;
 
@@ -195,6 +196,10 @@ namespace Intersect.Client.Interface.Shared
             // Game Settings - Interface: Auto-close Windows.
             mAutoCloseWindowsCheckbox = new LabeledCheckBox(mInterfaceSettings, "AutoCloseWindowsCheckbox");
             mAutoCloseWindowsCheckbox.Text = Strings.Settings.AutoCloseWindows;
+
+            // Game Settings - Interface: Auto-toggle chat log visibility.
+            mAutoToggleChatLogCheckbox = new LabeledCheckBox(mInterfaceSettings, "AutoToggleChatLogCheckbox");
+            mAutoToggleChatLogCheckbox.Text = Strings.Settings.AutoToggleChatLog;
 
             // Game Settings - Interface: Show EXP/HP/MP as Percentage.
             mShowExperienceAsPercentageCheckbox =
@@ -672,6 +677,7 @@ namespace Intersect.Client.Interface.Shared
 
             // Game Settings.
             mAutoCloseWindowsCheckbox.IsChecked = Globals.Database.HideOthersOnWindowOpen;
+            mAutoToggleChatLogCheckbox.IsChecked = Globals.Database.AutoToggleChatLog;
             mShowHealthAsPercentageCheckbox.IsChecked = Globals.Database.ShowHealthAsPercentage;
             mShowManaAsPercentageCheckbox.IsChecked = Globals.Database.ShowManaAsPercentage;
             mShowExperienceAsPercentageCheckbox.IsChecked = Globals.Database.ShowExperienceAsPercentage;
@@ -852,6 +858,7 @@ namespace Intersect.Client.Interface.Shared
 
             // Game Settings.
             Globals.Database.HideOthersOnWindowOpen = mAutoCloseWindowsCheckbox.IsChecked;
+            Globals.Database.AutoToggleChatLog = mAutoToggleChatLogCheckbox.IsChecked;
             Globals.Database.ShowExperienceAsPercentage = mShowExperienceAsPercentageCheckbox.IsChecked;
             Globals.Database.ShowHealthAsPercentage = mShowHealthAsPercentageCheckbox.IsChecked;
             Globals.Database.ShowManaAsPercentage = mShowManaAsPercentageCheckbox.IsChecked;
